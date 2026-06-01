@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact — Javaloka Coffee</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body data-lang="id">
+
+  <header class="site-header">
+    <div class="container nav">
+      <a href="index.html" class="brand">JAVALOKA <span>COFFEE</span></a>
+      <div class="nav-actions">
+        <nav class="nav-links">
+          <a href="index.html">Home</a>
+          <a href="products.html">Products</a>
+          <a href="about.html">About</a>
+          <a href="contact.html" class="active">Contact</a>
+        </nav>
+        <button class="lang-switch" type="button" data-lang-toggle>ID / EN</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+      <div class="container">
+        <div class="kicker lang lang-id">Hubungi Kami</div>
+        <div class="kicker lang lang-en">Get in Touch</div>
+        <h1 class="lang lang-id">Kontak & Pemesanan</h1>
+        <h1 class="lang lang-en">Contact & Orders</h1>
+        <p class="lede lang lang-id">Punya pertanyaan, ingin pesan, atau tertarik kolaborasi? Kami senang mendengar dari Anda.</p>
+        <p class="lede lang lang-en">Have questions, want to order, or interested in collaboration? We'd love to hear from you.</p>
+      </div>
+    </section>
+
+    <!-- Contact Layout -->
+    <section class="section" style="padding-top:20px;">
+      <div class="container">
+        <div class="grid two" style="gap:40px;align-items:start;">
+
+          <!-- Form -->
+          <div class="card" style="padding:32px;">
+            <h2 class="lang lang-id" style="margin-bottom:6px;">Kirim Pesan</h2>
+            <h2 class="lang lang-en" style="margin-bottom:6px;">Send a Message</h2>
+            <p class="lang lang-id" style="margin:0 0 24px;">Kami akan membalas dalam 1×24 jam.</p>
+            <p class="lang lang-en" style="margin:0 0 24px;">We'll reply within 1×24 hours.</p>
+
+            <form id="contact-form" onsubmit="handleSubmit(event)">
+              <div class="grid two" style="gap:16px;">
+                <label class="form-field">
+                  <span class="lang lang-id">Nama</span>
+                  <span class="lang lang-en">Name</span>
+                  <input class="input" type="text" name="name" required
+                    placeholder="Nama lengkap / Full name" />
+                </label>
+                <label class="form-field">
+                  Email
+                  <input class="input" type="email" name="email" required
+                    placeholder="email@example.com" />
+                </label>
+              </div>
+
+              <label class="form-field">
+                <span class="lang lang-id">Keperluan</span>
+                <span class="lang lang-en">Subject</span>
+                <select class="select" name="subject">
+                  <option value="" disabled selected>
+                    -- Pilih / Choose --
+                  </option>
+                  <option value="order" class="lang lang-id">Pemesanan Produk</option>
+                  <option value="order" class="lang lang-en">Product Order</option>
+                  <option value="wholesale" class="lang lang-id">Kerjasama / Reseller</option>
+                  <option value="wholesale" class="lang lang-en">Partnership / Reseller</option>
+                  <option value="info" class="lang lang-id">Informasi Produk</option>
+                  <option value="info" class="lang lang-en">Product Information</option>
+                  <option value="other" class="lang lang-id">Lainnya</option>
+                  <option value="other" class="lang lang-en">Other</option>
+                </select>
+              </label>
+
+              <label class="form-field">
+                <span class="lang lang-id">Pesan</span>
+                <span class="lang lang-en">Message</span>
+                <textarea class="textarea" name="message" rows="5" required
+                  placeholder="Tulis pesan Anda / Write your message here..."></textarea>
+              </label>
+
+              <button class="btn primary lang lang-id" type="submit" style="margin-top:8px;width:100%;justify-content:center;">
+                Kirim Pesan
+              </button>
+              <button class="btn primary lang lang-en" type="submit" style="margin-top:8px;width:100%;justify-content:center;">
+                Send Message
+              </button>
+            </form>
+
+            <div id="form-success" style="display:none;margin-top:16px;padding:14px 18px;background:rgba(92,53,23,0.08);border-radius:12px;color:var(--accent);font-weight:600;">
+              <span class="lang lang-id">✅ Pesan terkirim! Kami akan segera menghubungi Anda.</span>
+              <span class="lang lang-en">✅ Message sent! We'll get back to you shortly.</span>
+            </div>
+          </div>
+
+          <!-- Contact Info -->
+          <div>
+            <div class="card" style="padding:28px;margin-bottom:20px;">
+              <h3 class="lang lang-id" style="margin-bottom:16px;">Informasi Kontak</h3>
+              <h3 class="lang lang-en" style="margin-bottom:16px;">Contact Information</h3>
+
+              <div class="info-block">
+                <div class="info-icon">📍</div>
+                <div>
+                  <div class="info-label lang lang-id">Lokasi</div>
+                  <div class="info-label lang lang-en">Location</div>
+                  <div class="info-text lang lang-id">Jl. Kopi Nusantara No. 17<br>Bandung, Jawa Barat 40135</div>
+                  <div class="info-text lang lang-en">Jl. Kopi Nusantara No. 17<br>Bandung, West Java 40135</div>
+                </div>
+              </div>
+
+              <div class="info-block">
+                <div class="info-icon">📱</div>
+                <div>
+                  <div class="info-label">WhatsApp</div>
+                  <div class="info-text">
+                    <a href="https://wa.me/6281234567890" style="color:var(--accent);font-weight:600;">+62 812-3456-7890</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="info-block">
+                <div class="info-icon">✉️</div>
+                <div>
+                  <div class="info-label">Email</div>
+                  <div class="info-text">
+                    <a href="mailto:hello@javalokacoffee.id" style="color:var(--accent);font-weight:600;">hello@javalokacoffee.id</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="info-block">
+                <div class="info-icon">📸</div>
+                <div>
+                  <div class="info-label">Instagram</div>
+                  <div class="info-text">
+                    <a href="#" style="color:var(--accent);font-weight:600;">@javalokacoffee</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="info-block">
+                <div class="info-icon">🕐</div>
+                <div>
+                  <div class="info-label lang lang-id">Jam Operasional</div>
+                  <div class="info-label lang lang-en">Operating Hours</div>
+                  <div class="info-text lang lang-id">Senin – Sabtu: 08.00 – 17.00 WIB<br>Minggu: 09.00 – 14.00 WIB</div>
+                  <div class="info-text lang lang-en">Monday – Saturday: 08:00 – 17:00 WIB<br>Sunday: 09:00 – 14:00 WIB</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Quick Order -->
+            <div class="card" style="padding:24px;background:linear-gradient(135deg,#5c3517 0%,#8a4a22 100%);color:white;border:none;">
+              <h3 class="lang lang-id" style="color:white;margin-bottom:8px;">Pesan Cepat via WhatsApp</h3>
+              <h3 class="lang lang-en" style="color:white;margin-bottom:8px;">Quick Order via WhatsApp</h3>
+              <p class="lang lang-id" style="color:rgba(255,255,255,0.8);font-size:14px;margin:0 0 16px;">Untuk pemesanan cepat, hubungi kami langsung via WhatsApp.</p>
+              <p class="lang lang-en" style="color:rgba(255,255,255,0.8);font-size:14px;margin:0 0 16px;">For quick orders, contact us directly via WhatsApp.</p>
+              <a href="https://wa.me/6281234567890?text=Halo%20Javaloka%20Coffee%2C%20saya%20ingin%20memesan%20kopi."
+                class="btn lang lang-id"
+                style="background:white;color:#5c3517;font-weight:700;width:100%;justify-content:center;">
+                Chat WhatsApp
+              </a>
+              <a href="https://wa.me/6281234567890?text=Hello%20Javaloka%20Coffee%2C%20I%20would%20like%20to%20order%20coffee."
+                class="btn lang lang-en"
+                style="background:white;color:#5c3517;font-weight:700;width:100%;justify-content:center;">
+                Chat on WhatsApp
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <div class="footer-brand">JAVALOKA <span style="color:var(--accent-2);">COFFEE</span></div>
+        <div class="footer-tagline lang lang-id">Kopi Nusantara terbaik, disangrai dengan cinta.</div>
+        <div class="footer-tagline lang lang-en">The finest Nusantara coffee, roasted with love.</div>
+      </div>
+      <div class="footer-right">© 2026 Javaloka Coffee</div>
+    </div>
+  </footer>
+
+  <script src="scripts.js"></script>
+  <script>
+    function handleSubmit(e) {
+      e.preventDefault();
+      document.getElementById('contact-form').style.display = 'none';
+      document.getElementById('form-success').style.display = 'block';
+    }
+  </script>
+</body>
+</html>
