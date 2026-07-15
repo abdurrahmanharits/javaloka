@@ -3,7 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProductController;
-use App\Models\Product;
+use App\Support\ProductCatalog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -12,11 +12,7 @@ Route::get('/products', [ProductController::class, 'index'])->name('products.ind
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
-        'featuredProducts' => Product::query()
-            ->where('is_active', true)
-            ->where('is_featured', true)
-            ->latest()
-            ->get(),
+        'featuredProducts' => ProductCatalog::featured(),
     ]);
 })->name('home');
 
