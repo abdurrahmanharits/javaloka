@@ -1,40 +1,37 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "version": 2,
-  "builds": [
-    {
-      "src": "api/index.php",
-      "use": "vercel-php@0.9.0"
-    },
-    {
-      "src": "public/**",
-      "use": "@vercel/static"
+  "framework": null,
+  "installCommand": "composer install --no-dev --prefer-dist --optimize-autoloader && npm ci",
+  "buildCommand": "npm run build",
+  "functions": {
+    "api/index.php": {
+      "runtime": "vercel-php@0.9.0"
     }
-  ],
-  "routes": [
+  },
+  "rewrites": [
     {
-      "src": "/build/(.*)",
-      "dest": "public/build/$1"
+      "source": "/build/:match*",
+      "destination": "/public/build/:match*"
     },
     {
-      "src": "/assets/(.*)",
-      "dest": "public/assets/$1"
+      "source": "/assets/:match*",
+      "destination": "/public/assets/:match*"
     },
     {
-      "src": "/favicon.ico",
-      "dest": "public/favicon.ico"
+      "source": "/favicon.ico",
+      "destination": "/public/favicon.ico"
     },
     {
-      "src": "/favicon.png",
-      "dest": "public/favicon.ico"
+      "source": "/favicon.png",
+      "destination": "/public/favicon.ico"
     },
     {
-      "src": "/robots.txt",
-      "dest": "public/robots.txt"
+      "source": "/robots.txt",
+      "destination": "/public/robots.txt"
     },
     {
-      "src": "/(.*)",
-      "dest": "/api/index.php"
+      "source": "/:path*",
+      "destination": "/api/index.php"
     }
   ],
   "env": {
