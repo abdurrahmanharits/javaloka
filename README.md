@@ -21,6 +21,24 @@ Laravel is a web application framework with expressive, elegant syntax. We belie
 
 Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
+## Vercel Deployment
+
+This repository deploys to Vercel using a root-level `Dockerfile.vercel` and Vercel Container Images instead of the legacy `vercel-php` community runtime.
+
+For production on Vercel, set at least these project environment variables:
+
+- `APP_KEY`
+- `APP_URL`
+- your database variables such as `DB_CONNECTION`, `DB_HOST`, `DB_PORT`, `DB_DATABASE`, `DB_USERNAME`, and `DB_PASSWORD`
+
+The container defaults already assume a stateless Vercel environment:
+
+- `LOG_CHANNEL=stderr`
+- `CACHE_STORE=array`
+- `QUEUE_CONNECTION=sync`
+- `SESSION_DRIVER=cookie`
+- `VIEW_COMPILED_PATH=/tmp/storage/framework/views`
+
 ## Learning Laravel
 
 Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
