@@ -26,7 +26,7 @@ export function createApp() {
     app.use(express.urlencoded({ extended: false, limit: '100kb' }));
     app.use(session({
         name: 'javaloka.sid', secret: env.SESSION_SECRET, resave: false, saveUninitialized: false,
-        store: new MySQLStore({ createDatabaseTable: true, schema: { tableName: 'sessions', columnNames: { session_id: 'session_id', expires: 'expires', data: 'data' } }, clearExpired: true, checkExpirationInterval: 900000 }, sessionDatabase),
+        store: new MySQLStore({ ...sessionDatabase, createDatabaseTable: true, schema: { tableName: 'sessions', columnNames: { session_id: 'session_id', expires: 'expires', data: 'data' } }, clearExpired: true, checkExpirationInterval: 900000 }),
         cookie: { httpOnly: true, secure: env.NODE_ENV === 'production', sameSite: 'lax', maxAge: 1000 * 60 * 60 * 8 },
     }));
     app.use('/api', attachCurrentUser);
