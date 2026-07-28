@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import initSqlJs from 'sql.js';
-import { PrismaClient } from '@prisma/client';
+import { prisma } from '../src/server/config/prisma.js';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const source = path.join(root, 'database', 'database.sqlite');
@@ -10,7 +10,7 @@ if (!fs.existsSync(source)) throw new Error(`Legacy SQLite database not found: $
 const backup = `${source}.backup-${new Date().toISOString().replaceAll(':', '-').replaceAll('.', '-')}`;
 fs.copyFileSync(source, backup);
 console.log(`Backup created: ${backup}`);
-const SQL = await initSqlJs(); const db = new SQL.Database(fs.readFileSync(source)); const prisma = new PrismaClient();
+const SQL = await initSqlJs(); const db = new SQL.Database(fs.readFileSync(source));
 const tableExists = (name) => db.exec("SELECT name FROM sqlite_master WHERE type='table' AND name='" + name.replaceAll("'", "''") + "'").length > 0;
 const rows = (table) => tableExists(table) ? db.exec(`SELECT * FROM ${table}`)[0]?.values.map((values) => Object.fromEntries(db.exec(`SELECT * FROM ${table}`)[0].columns.map((column, index) => [column, values[index]]))) ?? [] : [];
 const decimal = (value) => Number(value ?? 0); const normaliseHash = (hash) => typeof hash === 'string' && hash.startsWith('$2y$') ? `$2b$${hash.slice(4)}` : hash;

@@ -1,8 +1,6 @@
 import 'dotenv/config';
 import bcrypt from 'bcrypt';
-import { PrismaClient } from '@prisma/client';
-
-const prisma = new PrismaClient();
+import { prisma } from '../src/server/config/prisma.js';
 const admin = { name: process.env.ADMIN_NAME ?? 'Javaloka Admin', email: process.env.ADMIN_EMAIL ?? 'admin@javaloka.test', password: process.env.ADMIN_PASSWORD ?? 'password123' };
 const products = [
     { name: 'Gayo Natural', sku: 'JVL-GAYO-200', origin: 'Aceh Gayo', roastLevel: 'medium', descriptionId: 'Kopi natural process dari Dataran Tinggi Gayo dengan karakter buah tropis.', descriptionEn: 'Natural process coffee from the Gayo Highlands with tropical fruit character.', price: 85000, weight: '200g', tastingNotes: ['Strawberry', 'Dark Chocolate', 'Wine-like'], type: 'single-origin', stock: 4.8, lowStockThreshold: 1.2, isActive: true, isFeatured: true },
