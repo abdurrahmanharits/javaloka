@@ -6,7 +6,7 @@
   "engines": { "node": ">=20 <25" },
   "scripts": {
     "dev": "concurrently \"vite\" \"node --watch src/server/index.js\"",
-    "build": "npm run prisma:generate && vite build",
+    "build": "npm run prisma:migrate && npm run prisma:generate && vite build",
     "start": "node src/server/index.js",
     "lint": "eslint .",
     "test": "vitest run",
