@@ -29,7 +29,7 @@ export function createApp() {
         store: new MySQLStore({ createDatabaseTable: true, schema: { tableName: 'sessions', columnNames: { session_id: 'session_id', expires: 'expires', data: 'data' } }, clearExpired: true, checkExpirationInterval: 900000 }, sessionDatabase),
         cookie: { httpOnly: true, secure: env.NODE_ENV === 'production', sameSite: 'lax', maxAge: 1000 * 60 * 60 * 8 },
     }));
-    app.use(attachCurrentUser);
+    app.use('/api', attachCurrentUser);
     app.use('/api', api);
     app.use('/api', (_req, _res, next) => next(new HttpError(404, 'API endpoint not found.')));
     app.use(express.static(clientDir, { index: false, maxAge: env.NODE_ENV === 'production' ? '1y' : 0 }));
