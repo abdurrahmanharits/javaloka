@@ -1,0 +1,19 @@
+Options -Indexes
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Block hidden files except ACME challenge files.
+    RewriteRule "(^|/)\.(?!well-known/)" - [F,L]
+
+    # Block direct access to private framework paths when the repo itself is web-rooted.
+    RewriteRule ^(app|bootstrap|config|database|resources|routes|storage|tests|vendor)/ - [F,L,NC]
+    RewriteRule ^(artisan|composer\.(json|lock)|package(-lock)?\.json|vite\.config\.js|phpunit\.xml|README\.md|DEPLOY_HOSTINGER\.md)$ - [F,L,NC]
+
+    # Fallback for shared hosting that cannot point the domain to /public.
+    RewriteCond %{REQUEST_URI} !^/public/
+    RewriteRule ^$ public/ [L]
+
+    RewriteCond %{REQUEST_URI} !^/public/
+    RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>

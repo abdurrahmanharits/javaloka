@@ -1,0 +1,27 @@
+import { Router } from 'express';
+import rateLimit from 'express-rate-limit';
+import { login, logout, me } from '../controllers/authController.js';
+import { featuredProducts, listProducts } from '../controllers/productController.js';
+import * as admin from '../controllers/adminController.js';
+import { requireAdmin, requireAuth } from '../middleware/auth.js';
+import { validate } from '../middleware/validate.js';
+import { accountCreateSchema, accountUpdateSchema, inventorySchema, loginSchema, productSchema } from '../validators/admin.js';
+import { success } from '../utils/http.js';
+
+const loginLimiter = rateLimit({ windowMs: 15 * 60 * 1000, limit: 10, standardHeaders: true, legacyHeaders: false, message: { success: false, message: 'Terlalu banyak percobaan login. Coba lagi nanti.' } });
+export const api = Router();
+api.get('/health', (_req, res) => success(res, { status: 'ok' }, 'Javaloka API healthy.'));
+api.get('/products', listProducts);
+api.get('/products/featured', featuredProducts);
+api.post('/auth/login', loginLimiter, validate(loginSchema), login);
+api.post('/auth/logout', requireAuth, logout);
+api.get('/auth/me', requireAuth, me);
+api.use('/admin', requireAuth, requireAdmin);
+api.get('/admin/dashboard', admin.dashboard);
+api.post('/admin/products', validate(productSchema), admin.createProduct);
+api.put('/admin/products/:id', validate(productSchema), admin.updateProduct);
+api.delete('/admin/products/:id', admin.deleteProduct);
+api.patch('/admin/products/:id/inventory', validate(inventorySchema), admin.updateInventory);
+api.post('/admin/accounts', validate(accountCreateSchema), admin.createAccount);
+api.put('/admin/accounts/:id', validate(accountUpdateSchema), admin.updateAccount);
+api.delete('/admin/accounts/:id', admin.deleteAccount);
